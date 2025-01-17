@@ -1,0 +1,537 @@
+/* ==================================================================
+  Credit to Matt McAdams for CSS Boilerplate:
+  https://github.com/MattMcAdams/CSS-Boilerplate
+================================================================== */
+
+:root {
+    /* Spacing */
+    --space_05: 0.25rem; /* 4px   - utility to substitute 0 margins */
+    --space_1: 0.5rem; /* 8px   - utility for tight paddings etc */
+    --space_2: 1rem; /* 16px  - 1/2 line height, for closely related elements */
+    --space_4: 2rem; /* 32px  - 1 line height, for related elements */
+    --space_8: 4rem; /* 64px  - 2 line heights, for loosely related elements */
+    --space_16: 8rem; /* 128px - 4 line heights, for unrelated elements */
+  
+    /* Semantic Space */
+    --space_flow: var(--space_4);
+    --space_gutter: var(--space_2);
+    --space_section: var(--space_8);
+    --space_grid-gap: var(--space_4);
+    --space_flex-gap: var(--space_2);
+    --space_layout-gap: var(--space_4);
+  
+    /* Colors */
+    --color_text--default: #18181b;
+    --color_text--subtle: #71717a;
+    --color_text--link: #f88b06;
+    --color_text--link-alt: #f88b06;
+    --color_text--accent: var(--color_text--link);
+    --color_background--element: #f4f4f5;
+    --color_background--chip: #e4e4e7;
+    --color_accent: var(--color_text--link);
+  
+    /* Font Families */
+    --font_body: 'Charter', sans-serif;
+    --font_head: inherit;
+    --font_mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+      'DejaVu Sans Mono', monospace;
+  
+    /* Font Weights */
+    --font_weight--thin: 100;
+    --font_weight--extralight: 200;
+    --font_weight--light: 300;
+    --font_weight--normal: 400;
+    --font_weight--medium: 500;
+    --font_weight--semibold: 600;
+    --font_weight--bold: 700;
+    --font_weight--extrabold: 800;
+    --font_weight--black: 900;
+  
+    /* Font Sizes & Line Heights */
+    /* Based on a modular scale 1.125 by 1.2 */
+    /* Exact values have been refined to be a whole pixel value */
+    --font_size--small: 0.9375rem; /* 15px */
+    --font_size--normal: 1.125rem; /* 18px */
+    --font_size--medium: 1.375rem; /* 22px */
+    --font_size--large: 1.625rem; /* 26px */
+    --font_size--xlarge: 1.9375rem; /* 31px */
+    --font_size--xxlarge: 2.3125rem; /* 37px */
+    --font_size--xxxlarge: 2.8125rem; /* 45px */
+  
+    /* Line heights */
+    --font_height--small: 1.2;
+    --font_height--normal: 1.8;
+    --font_height--medium: 1.5;
+    --font_height--large: 1.3;
+    --font_height--xlarge: 1.2;
+    --font_height--xxlarge: 1.1;
+    --font_height--xxxlarge: 1;
+  }
+  
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video,
+  hr {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+  
+  body {
+    line-height: 1;
+  }
+  
+  #app {
+    background-color: #f2f2f2;
+  }
+  
+  ol,
+  ul {
+    list-style: none;
+  }
+  
+  /* Links that point to a location on the same page will scroll
+   * smoothly down to that location. */
+  
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* ==============================
+  /* SECTION Typography
+  ============================== */
+  
+  /* Set the document's default font, color, size, and line height */
+  
+  body {
+    font-family: var(--font_body);
+    font-size: var(--font_size--normal);
+    line-height: var(--font_height--normal);
+    color: var(--color_text--default);
+    background: var(--color_background--surface);
+    accent-color: var(--color_accent);
+  }
+  
+  /* Heading typography */
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font_head);
+    font-weight: var(--font_weight--bold);
+  }
+  
+  h1,
+  .util_txt--h1 {
+    font-size: var(--font_size--xxxlarge);
+    line-height: var(--font_height--xxxlarge);
+  }
+  
+  h2,
+  .util_txt--h2 {
+    font-size: var(--font_size--xxlarge);
+    line-height: var(--font_height--xxlarge);
+  }
+  
+  h3,
+  .util_txt--h3 {
+    font-size: var(--font_size--xlarge);
+    line-height: var(--font_height--xlarge);
+  }
+  
+  h4,
+  .util_txt--h4 {
+    font-size: var(--font_size--large);
+    line-height: var(--font_height--large);
+  }
+  
+  h5 {
+    font-size: var(--font_size--medium);
+    line-height: var(--font_height--medium);
+  }
+  /* SECTION Typography
+  ============================== */
+  
+  /* SECTION Buttons
+  ============================== */
+  
+  .button,
+  .button--secondary,
+  button,
+  input[type='submit'],
+  input[type='reset'],
+  input[type='button'] {
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    background-color: var(--color_text--link);
+    cursor: pointer;
+    box-sizing: border-box;
+    color: var(--color_background--surface);
+    border: 2px solid var(--color_text--link);
+    padding-inline: var(--space_4);
+    padding-block: var(--space_1);
+  }
+  
+  a.button:hover,
+  a.button--secondary:hover,
+  button:hover,
+  input[type='submit']:hover,
+  input[type='reset']:hover,
+  input[type='button']:hover,
+  a.button:focus,
+  a.button--secondary:focus,
+  button:focus,
+  input[type='submit']:focus,
+  input[type='reset']:focus,
+  input[type='button']:focus {
+    border-color: var(--color_text--link-alt);
+    background-color: var(--color_text--link-alt);
+  }
+  
+  .button--secondary,
+  button[type='reset'],
+  input[type='reset'] {
+    background-color: var(--color_background--surface);
+    color: var(--color_text--link);
+    border-color: var(--color_text--link);
+  }
+  
+  a.button--secondary:hover,
+  button[type='reset']:hover,
+  input[type='reset']:hover,
+  a.button--secondary:focus,
+  button[type='reset']:focus,
+  input[type='reset']:focus {
+    background-color: var(--color_background--surface);
+    color: var(--color_text--link-alt);
+    border-color: var(--color_text--link-alt);
+  }
+  
+  span.button,
+  button[disabled],
+  input[type='submit'][disabled],
+  input[type='reset'][disabled],
+  input[type='button'][disabled] {
+    cursor: auto;
+    background-color: var(--color_background--chip);
+    color: var(--color_text--subtle);
+    border-color: var(--color_background--chip);
+  }
+  
+  span.button--secondary,
+  input[type='reset'][disabled],
+  button[type='reset'][disabled] {
+    cursor: auto;
+    background-color: var(--color_background--surface);
+    color: var(--color_background--chip);
+    border-color: var(--color_background--chip);
+  }
+  
+  /* !SECTION Buttons */
+  
+  /* ==============================
+  /* SECTION Container System
+  ** Containers allow for a robust and flexible layout system by
+  ** applying the gutter padding and max width to the container itself.
+  ** Containers can be nested as needed.
+  ============================== */
+  
+  /* Setup containers */
+  
+  .container {
+    margin-inline: auto;
+    padding-inline: var(--space_gutter);
+    max-width: var(--width_content);
+  }
+  
+  .container--wide {
+    margin-inline: auto;
+    padding-inline: var(--space_gutter);
+    max-width: var(--width_wide);
+  }
+  
+  .container--full {
+    margin-inline: auto;
+    padding-inline: var(--space_gutter);
+  }
+  
+  /* Allow nested containers wider than parent */
+  
+  .container > .container--wide {
+    max-width: var(--width_wide);
+    margin-inline: calc(
+      min(calc(100vw - 100%), calc(var(--width_wide) - 100%)) / -2
+    );
+  }
+  
+  .container > .container--full,
+  .container--wide > .container--full {
+    max-width: 100vw;
+    margin-inline: calc((100vw - 100%) / -2);
+  }
+  
+  /* Remove duplicate gutters from nested containers the same size as parent */
+  
+  .container > .container,
+  .container--wide > .container--wide,
+  .container--full > .container--full {
+    margin-inline: calc(var(--space_gutter) * -1);
+  }
+  
+  /* Account for containers smaller than parent */
+  
+  .container--wide > .container,
+  .container--full > .container {
+    margin-inline: max(
+      calc(var(--space_gutter) * -1),
+      calc((100% - var(--width_content)) / 2)
+    );
+  }
+  
+  .container--full > .container--wide {
+    margin-inline: max(
+      calc(var(--space_gutter) * -1),
+      calc((100% - var(--width_wide)) / 2)
+    );
+  }
+  
+  /* Set up for flex containers */
+  
+  .flex--standard--row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flex--standard--column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* !SECTION Containers */
+  /* ==============================
+    /* SECTION Flow Spacing
+    ** Flow spacing is the space between elements in a vertical flow.
+    ** The .section class is provided for larger gaps between sections.
+    ** Flow spacing can be applied to a individual container using the .layout--flow class. or to the entire document using the .global--flow class. The implementation is different for each method, so consider how you want the spacing to be applied.
+    ============================== */
+  
+  .layout--flow > * + *,
+  blockquote > * + *,
+  details > * + * {
+    margin-block-start: var(--space_flow);
+  }
+  
+  .layout--flow-double > * + * {
+    margin-block-start: calc(var(--space_flow) * 2);
+  }
+  
+  .layout--flow-half > * + * {
+    margin-block-start: calc(var(--space_flow) / 2);
+  }
+  
+  .layout--flow > * + h1,
+  .layout--flow > * + h2,
+  .layout--flow > * + h3,
+  .layout--flow > * + h4,
+  .layout--flow > * + h5,
+  .layout--flow > * + h6 {
+    margin-block-start: calc(var(--space_flow) * 2);
+  }
+  
+  .layout--flow > h1 + h2,
+  .layout--flow > h2 + h3,
+  .layout--flow > h3 + h4,
+  .layout--flow > h4 + h5,
+  .layout--flow > h5 + h6 {
+    margin-block-start: calc(var(--space_flow) / 2);
+  }
+  
+  .section {
+    margin-block-start: var(--space_section);
+  }
+  
+  /* !SECTION Flow Spacing */
+  /* ==============================
+    /* SECTION Level
+    ** Creates a bar with content vertically aligned on both sides
+    ** Good for split navigation bars etc.
+    ============================== */
+  
+  .layout--level {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    gap: var(--space_gutter);
+  }
+  
+  /* !SECTION Level */
+  /* ==============================
+  
+    /* SECTION App
+  ** The app wrapper ensures the the site footer sticks to the
+  ** bottom of the viewport on short pages.
+  ** Structure should be as follows:
+  ** <div id="app">
+  **   <header></header>
+  **   <main></main>
+  **   <footer></footer>
+  ** </div>
+  ** No other elements should be present in the app div.
+  ============================== */
+  
+  #app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+  }
+  
+  #app > :nth-child(2) {
+    width: 100%;
+    flex: 1 0 auto;
+    place-content: start center;
+  }
+  
+  /* !SECTION App */
+  /* ==============================
+  
+    /* !HEADER */
+  /* ============================== */
+  
+  header {
+    position: relative;
+    padding: 40px;
+  }
+  
+  header > h1 {
+    position: absolute;
+    left: 20px;
+  }
+  
+  #menu_container {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+  }
+  
+  #menu {
+    background-color: #ffd8a8;
+    padding: 10px 14px 10px 14px;
+    border-radius: 4px;
+  }
+  
+  #menu:hover {
+    background-color: #ffc680;
+  }
+  
+  #menu > i {
+    margin-right: 5px;
+    color: var(--color_text--link);
+  }
+  
+  #menu > p {
+    color: var(--color_text--link);
+    font-weight: 900;
+  }
+  
+  #votes_left {
+      font-size: small;
+      text-align: center;
+  }

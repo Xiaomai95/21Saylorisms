@@ -6,7 +6,7 @@
 
 The website is simple: provide users with 21 votes and hundreds of quotes from Michael Saylor to vote for. Which quote will reign supreme?
 
-This site will become part of the 'Proof of Quote' umbrella site, which is home to more quote sites related to Bitcoin.
+This site will become part of the 'Proof of Word' umbrella site, which is home to more quote sites related to Bitcoin.
 
 ## Technology Stack
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="frontend/styles.css">
+    <script src="https://kit.fontawesome.com/629cb054b9.js" crossorigin="anonymous"></script>
+    <title>21Saylorisms: Vote for your favourite Michael Saylor quotes</title>
+</head>
+<body>
+    <div id="app" class="layout--flow">
+        <header class="flex--standard--column">
+            <h1>21Saylorisms</h1>
+            <div id="menu_container">
+                <div id="menu" class="flex--standard--column">
+                    <i class="fa-solid fa-heart"></i>
+                    <p id="vote">Vote</p>
+                </div>
+                <p id="votes_left"><span id="vote_count">X</span> votes left</p>
+            </div>
+           
+        </header>
+        <main>
+            <!-- 
+                intro
+                search quotes
+                quotes
+                self-intro
+             -->
+            <div class="container" id="intro">
+                <h4 id="intro_text">
+                    Vote on the best quotes about the world's hardest money. 
+                    <!-- There will only ever be 21 million Bitcoin so, naturally, you only get 21 votes. Let's find those kernels of truth.      -->
+                </h4>
+            </div>
+            <div class="container" id="quotes">
+                <p id="last_updated">Ranks update 24 hours</p>
+                <div id="quotes_container">
+
+                </div>
+            </div>
+        </main>
+        <footer>
+            <!-- By Ethan -->
+        </footer>
+        </div>
+    <script src="frontend/index.js"></script>
+</body>
+</html>
