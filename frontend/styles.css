@@ -393,12 +393,14 @@
   
   .flex--standard--row {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
   }
   
   .flex--standard--column {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -497,14 +499,32 @@
   
   header {
     position: relative;
-    padding: 40px;
+    padding: 10px 0 150px 20px;
+    display: flex;
+    align-items: center;
   }
   
   header > h1 {
     position: absolute;
     left: 20px;
   }
+
+  #profile {
+    width: 30%;
+
+  }
+
+  #icon {
+    position: absolute;
+    left: -100px;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
+  
+
   #menu_container {
     position: absolute;
     right: 20px;
@@ -534,4 +554,11 @@
   #votes_left {
       font-size: small;
       text-align: center;
+  }
+
+    /* !MAIN */
+  /* ============================== */
+
+  #profile_small {
+    width: 10%;
   }

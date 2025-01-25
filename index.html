@@ -9,16 +9,20 @@
 </head>
 <body>
     <div id="app" class="layout--flow">
-        <header class="flex--standard--column">
-            <h1>21Saylorisms</h1>
+        <header class="">
+            <div id="icon" class="">
+                <img src="frontend/assets/profile.png" alt="Michael Saylor's X.com profile picture" id="profile">
+                <div id="caption">
+                    <h5 id="caption_text">21Saylorisms</h4>
+                </div>
+            </div>
             <div id="menu_container">
-                <div id="menu" class="flex--standard--column">
+                <div id="menu" class="flex--standard--row">
                     <i class="fa-solid fa-heart"></i>
                     <p id="vote">Vote</p>
                 </div>
-                <p id="votes_left"><span id="vote_count">X</span> votes left</p>
+                <p id="votes_left"><span id="vote_count">21</span> votes left</p>
             </div>
-           
         </header>
         <main>
             <!-- 
@@ -29,14 +33,20 @@
              -->
             <div class="container" id="intro">
                 <h4 id="intro_text">
-                    Vote on the best quotes about the world's hardest money. 
-                    <!-- There will only ever be 21 million Bitcoin so, naturally, you only get 21 votes. Let's find those kernels of truth.      -->
+                    Vote for the MicroStrategy CEO's best quotes. 21 Million Bitcoin only, 21 votes only.
                 </h4>
             </div>
             <div class="container" id="quotes">
-                <p id="last_updated">Ranks update 24 hours</p>
                 <div id="quotes_container">
+                    <div class="quote_card flex--standard--row" id="quote_1">
+                        <img src="frontend/assets/profile.png" alt="Michael Saylor's X.com profile picture" id="profile_small">
+                    </div>
+                    <div class="quote_card" id="quote_2">
 
+                    </div>
+                    <div class="quote_card" id="quote_3">
+
+                    </div>
                 </div>
             </div>
         </main>
