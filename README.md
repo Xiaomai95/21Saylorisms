@@ -11,7 +11,7 @@ This site will become part of the 'Proof of Word' umbrella site, which is home t
 ## Technology Stack
 
 - Backend: PHP
-- Front-end: React, Vanilla CSS
+- Front-end: Vanilla JS, Vanilla CSS
  - CSS set up using [Matt McAdams' CSS boilerplate](https://github.com/MattMcAdams/CSS-Boilerplate):  
 - Database: SQLite
 

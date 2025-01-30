@@ -14,7 +14,7 @@ try {
     $db = new PDO("sqlite:/Library/WebServer/Documents/Projects/21Saylorisms/database/quotes.db");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //enables error reporting
 
-    $query = $db->query("SELECT quote, vote FROM quotes");
+    $query = $db->query("SELECT id, quote, vote FROM quotes");
     $results = $query->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ensures that the results are returned with column names as keys (e.g., ["id" => 1, "quote" => "Example quote"]).
 
     echo json_encode($results);

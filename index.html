@@ -1,59 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="frontend/styles.css">
-    <script src="https://kit.fontawesome.com/629cb054b9.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="frontend/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/629cb054b9.js"
+      crossorigin="anonymous"
+    ></script>
     <title>21Saylorisms: Vote for your favourite Michael Saylor quotes</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app" class="layout--flow">
-        <header class="">
-            <div id="icon" class="">
-                <img src="frontend/assets/profile.png" alt="Michael Saylor's X.com profile picture" id="profile">
-                <div id="caption">
-                    <h5 id="caption_text">21Saylorisms</h4>
+      <div id="overlay">
+        <div class="close_overlay">
+          <button id="close_overlay_button" type="button">
+            X
+          </button>
+        </div>
+        <div id="voting">
+            <div id="voting_tabs">
+                <button class="voting_tabs_button active" id="versus_button" type="button">🥊 1v1</button>
+                <button class="voting_tabs_button" id="search_button" type="button">🔍 Search</button>
+            </div>
+            <div class="voting_form active" id="versus_section">
+                <p class="voting_form_title">Which quote comes out on top?</p>
+                <div id="versus_section_quotes">
+                    <div class="versus_section_quote_card" id="versus_section_quotes_1"></div>
+                    <p class="emoji">🆚</p>
+                    <div class="versus_section_quote_card" id="versus_section_quotes_2"></div>
                 </div>
             </div>
-            <div id="menu_container">
-                <div id="menu" class="flex--standard--row">
-                    <i class="fa-solid fa-heart"></i>
-                    <p id="vote">Vote</p>
-                </div>
-                <p id="votes_left"><span id="vote_count">21</span> votes left</p>
+            <div class="voting_form inactive" id="search_section">
+                Hi
             </div>
-        </header>
-        <main>
-            <!-- 
+        </div>
+      </div>
+      <header>
+        <div id="icon">
+          <img
+            src="frontend/assets/profile.png"
+            alt="Michael Saylor's X.com profile picture"
+            id="profile"
+          />
+          <div id="caption">
+            <h5 id="caption_text">21Saylorisms</h5>
+          </div>
+        </div>
+        <div id="menu_container">
+          <div id="menu" class="flex--standard--row">
+            <i class="fa-solid fa-heart"></i>
+            <p id="vote">Vote</p>
+          </div>
+          <p id="votes_left"><span id="vote_count">21</span> votes left</p>
+        </div>
+      </header>
+      <main>
+        <!-- 
                 intro
                 search quotes
                 quotes
                 self-intro
              -->
-            <div class="container" id="intro">
-                <h4 id="intro_text">
-                    Vote for the MicroStrategy CEO's best quotes. 21 Million Bitcoin only, 21 votes only.
-                </h4>
-            </div>
-            <div class="container" id="quotes">
-                <div id="quotes_container">
-                    <div class="quote_card flex--standard--row" id="quote_1">
-                        <img src="frontend/assets/profile.png" alt="Michael Saylor's X.com profile picture" id="profile_small">
-                    </div>
-                    <div class="quote_card" id="quote_2">
-
-                    </div>
-                    <div class="quote_card" id="quote_3">
-
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer>
-            <!-- By Ethan -->
-        </footer>
+        <div class="container" id="intro">
+          <h4 id="intro_text">
+            Vote for the MicroStrategy CEO's best quotes. 21 Million Bitcoin
+            only, 21 votes only.
+          </h4>
         </div>
+        <div class="container" id="quotes">
+          <div id="quotes_container" class="flex--standard--column">
+            <div class="quote_card" id="quote_1">
+              <div class="top_ranks">
+                <p id="quote_rank_1" class="emoji">🥇</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_1_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_2">
+              <div class="top_ranks">
+                <p id="quote_rank_2" class="emoji">🥈</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_2_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_3">
+              <div class="top_ranks">
+                <p id="quote_rank_3" class="emoji">🥉</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_3_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_4">
+              <div class="rank">
+                <p id="quote_rank_4" class="rank_card">#4</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_4_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_5">
+              <div class="rank">
+                <p id="quote_rank_5" class="rank_card">#5</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_5_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_6">
+              <div class="rank">
+                <p id="quote_rank_6" class="rank_card">#6</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_6_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_7">
+              <div class="rank">
+                <p id="quote_rank_7" class="rank_card">#7</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_7_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_8">
+              <div class="rank">
+                <p id="quote_rank_8" class="rank_card">#8</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_8_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_9">
+              <div class="rank">
+                <p id="quote_rank_9" class="rank_card">#9</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_9_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_10">
+              <div class="rank">
+                <p id="quote_rank_10" class="rank_card">#10</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_10_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_11">
+              <div class="rank">
+                <p id="quote_rank_11" class="rank_card">#11</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_11_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_12">
+              <div class="rank">
+                <p id="quote_rank_12" class="rank_card">#12</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_12_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_13">
+              <div class="rank">
+                <p id="quote_rank_13" class="rank_card">#13</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_13_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_14">
+              <div class="rank">
+                <p id="quote_rank_14" class="rank_card">#14</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_14_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_15">
+              <div class="rank">
+                <p id="quote_rank_15" class="rank_card">#15</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_15_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_16">
+              <div class="rank">
+                <p id="quote_rank_16" class="rank_card">#16</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_16_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_17">
+              <div class="rank">
+                <p id="quote_rank_17" class="rank_card">#17</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_17_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_18">
+              <div class="rank">
+                <p id="quote_rank_18" class="rank_card">#18</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_18_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_19">
+              <div class="rank">
+                <p id="quote_rank_19" class="rank_card">#19</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_19_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_20">
+              <div class="rank">
+                <p id="quote_rank_20" class="rank_card">#20</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_20_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+            <div class="quote_card" id="quote_21">
+              <div class="rank">
+                <p id="quote_rank_21" class="rank_card">#21</p>
+              </div>
+              <p class="quote_card_text" id="quote_rank_21_text"></p>
+              <div class="vote flex--standard--column">
+                <p class="emoji">🧡</p>
+                <p class="vote_count">0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <!-- By Ethan -->
+      </footer>
+    </div>
     <script src="frontend/index.js"></script>
-</body>
+  </body>
 </html>
