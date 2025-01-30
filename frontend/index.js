@@ -1,3 +1,7 @@
+//Comments key:
+// = general comment
+//// = needs changing
+
 window.addEventListener('DOMContentLoaded', () => {
   // DOM ELEMENTS - START
   const quotesContainer = document.getElementById('quotes_container');
@@ -11,6 +15,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const quote2Versus = document.getElementById('versus_section_quotes_2');
 
   const votingForm = document.querySelectorAll('.voting_form');
+  const mainVoteCount = document.getElementById('vote_count');
+  const overlayVoteCount = document.getElementById('overlay_vote_count_span');
 
   // DOM ELEMENTS - END
 
@@ -61,9 +67,15 @@ window.addEventListener('DOMContentLoaded', () => {
     quote20,
     quote21,
   ];
+  
+  ///voting
+  let voteCount = 21; //user gets 21 votes only - start at 21 and count down
+  mainVoteCount.innerHTML = voteCount;
+  overlayVoteCount.innerHTML = voteCount;
 
   /// quotes
   let quotesArray = [];
+  let displayVersusQuotes; //points to function with closure inside later but is declared globally here so that it points to createOneVersusOneQuotesDisplay(quotesArray) only once, thus the same quotesArray is used instead of duplicates. 
 
   // GLOBAL VARIABLES (STATE) - END
 
@@ -99,49 +111,71 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function createOneVersusOneQuotesDisplay(quotesArray) {
-    let quotesRemovedArray = [...quotesArray];
+    
+    let quotesRemovedArray = [...quotesArray]; //point to quotesArray and in closure below, quotesRemovedArray remembers edited array with quotes removed
     
 
-    return function displayOneVersusOneQuotes() {
+    return function displayOneVersusOneQuotes() { //closure to remember which quotes have been removed
 
       //run function again when user votes
 
       if (quotesRemovedArray.length < 2) {
-        console.log('Not enough quotes');
+        console.log('Not enough quotes'); ////change this to a notification
         return;
       }
 
       let firstRandomIndex = Math.floor(Math.random() * quotesRemovedArray.length);
-      let firstQuote = quotesRemovedArray.splice(firstRandomIndex, 1)[0].quote //remove quote from array and get quote text
+      let firstQuote = quotesRemovedArray.splice(firstRandomIndex, 1)[0].quote ////firstQuote and secondQuote variables are pointing to two different array - need to remove splice from same array //remove quote from array and get quote text
       quote1Versus.innerHTML = firstQuote;
+      console.log("first", quotesRemovedArray)
 
       let secondRandomIndex = Math.floor(
         Math.random() * quotesRemovedArray.length
       );
       let secondQuote = quotesRemovedArray.splice(secondRandomIndex, 1)[0].quote //remove quote from array and get quote text
       quote2Versus.innerHTML = secondQuote;
+      console.log("second", quotesRemovedArray)
      
     };
   }
 
-  function votingCardsClickEvent(quotesArray) {
+  function votingCardsClickEvent() {
     versusCards.forEach((card) => {
-      card.addEventListener('click', createOneVersusOneQuotesDisplay(quotesArray))
+      card.addEventListener('click', () => {
+        displayVersusQuotes()
+        let runVoteCount = changeVoteCount(); //because it's a closure
+        runVoteCount();
+        //// click needs to run function that +1 to quote that was voted for
+      }) 
     })
+  }
+
+  function changeVoteCount() {
+
+    return function trackVoteCount() {
+      if (voteCount < 1) {
+        ////notification
+        return
+      }
+      voteCount--
+      overlayVoteCount.innerHTML = voteCount;
+      mainVoteCount.innerHTML = voteCount;
+    }
+
   }
 
   // HELPER FUNCTIONS - END
 
   // CONTROLLER FUNCTIONS - START
 
-  function sortQuotes(quotes) {
+  function sortQuotes(quotes) { //sorts quotes highest to lowest number of votes
     let sortedQuotes = quotes.sort((b, a) => {
       if (b.votes === a.votes) {
         return b.quote.length - a.quote.length; //if votes are equal, the shortest quote wins (no reason for this, just had to sort them somehow)
       }
       return b.votes - a.votes;
     });
-    displayQuotes(sortedQuotes.slice(0, 21)); //only send the top 21 quotes
+    displayQuotes(sortedQuotes.slice(0, 21)); //only display top 21 quotes
   }
 
   function fetchQuotes() {
@@ -154,8 +188,8 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       .then((quotes) => {
         quotesArray = [...quotes];
-        let displayQuotes = createOneVersusOneQuotesDisplay(quotesArray); //closure inside create func so need to call displayQuotes below
-        displayQuotes();
+        if (!displayVersusQuotes) displayVersusQuotes = createOneVersusOneQuotesDisplay(quotesArray); //closure inside create func so need to call displayQuotes below
+        displayVersusQuotes();
         votingCardsClickEvent(quotesArray);
         sortQuotes(quotesArray);
       })
