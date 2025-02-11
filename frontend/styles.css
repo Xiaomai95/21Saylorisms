@@ -176,7 +176,8 @@ body {
 }
 
 #app {
-  background-color: #f2f2f2;
+  background-color: #f2f2f2; 
+  /* Slightly saturated with orange because Bitcoin */
 }
 
 ol,
@@ -521,7 +522,7 @@ header > h1 {
 #overlay {
   height: 100vh;
   width: 100%;
-  background-color: #ced1d5bf;
+  background-color: #dadadae7;
   position: absolute;
   overflow-y: scroll;
   z-index: 1;
@@ -570,8 +571,10 @@ header > h1 {
 .voting_tabs_button {
   font-size: var(--font_size--normal);
   cursor: pointer;
-  background-color: white;
-  color: rgb(197, 190, 190);
+  background-color: #f2f2f2;
+  /* border-top: #e3ddd6 solid 2px !important; */
+  border-bottom: #ffddb4 solid 4px !important;
+  color: rgb(114, 114, 114);
   transition: background-color 0.2s ease-in-out 0ms;
   text-align: center;
   padding: 5px 0 5px 0;
@@ -579,7 +582,8 @@ header > h1 {
 }
 
 .voting_tabs_button.active {
-  border-bottom: rgb(40, 39, 39) solid 2px !important;
+  /* border-top: #fead4a solid 2px !important; */
+  border-bottom: #ff9512 solid 4px !important;
   color: black;
 }
 
@@ -619,19 +623,14 @@ header > h1 {
 
 .versus_section_quote_card {
   border-radius: 5px;
+  border: #ced1d5 solid 2px;
   padding: 20px 30px 20px 30px;
   cursor: pointer;
   width: 100%;
   max-width: 400px;
 }
 
-#versus_section_quotes_1 {
-  border: rgba(238, 65, 65, 0.83) solid 2px;
-}
 
-#versus_section_quotes_2 {
-  border: rgba(65, 71, 238, 0.83) solid 2px;
-}
 
 #overlay_vote_count {
   margin-top: 20px;
@@ -673,7 +672,7 @@ header > h1 {
   width: 90%;
   grid-gap: 10px;
   justify-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .search_section_button {
@@ -685,11 +684,11 @@ header > h1 {
 }
 
 .search_section_button.inactive {
-  background-color: #e5e5edd8;
+  background-color: #ffd8a8;
 }
 
 .search_section_button.active {
-  background-color: #acacb3d8;
+  background-color: #fba843;
 }
 
 #search_quotes_container {
@@ -698,12 +697,32 @@ header > h1 {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-height: 60vh; /* allowed height for scrolling purposes together with padding-top to push top quote down and overflow auto to allow scroll */
+  max-height: 50vh; /* allowed height for scrolling purposes together with padding-top to push top quote down and overflow auto to allow scroll */
   overflow-y: auto;
 }
 
-#search_quotes_container > #money_quotes, #search_quotes_container > #fire_quotes {
-  padding-top: 150px;
+#search_quotes_container > #money_quotes {
+  padding-top: 410px;
+}
+
+#search_quotes_container > #fire_quotes {
+  padding-top: 440px;
+}
+
+#search_quotes_container > #energy_quotes {
+  padding-top: 40px;
+}
+
+#search_quotes_container > #world_quotes {
+  padding-top: 140px;
+}
+
+#search_quotes_container > #think_quotes {
+  padding-top: 220px;
+}
+
+#search_quotes_container > #target_quotes {
+  padding-top: 220px;
 }
 
 .emoji_search_quotes {
@@ -826,9 +845,15 @@ header > h1 {
 
 /* RESPONSIVE */
 
-/* SMALL SCREEN - < 360px */
+/* SMALL SCREEN - < 460px */
 
 @media (max-width: 460px) {
+
+  #search_section_title, #versus_section_title {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
 
   .voting_form_title {
     width: 80%;
@@ -842,10 +867,27 @@ header > h1 {
     width: 50px;
   }
 
-  #search_quotes_container > #target_quotes {
-    padding-top: 10px;
+}
+
+/* LARGE PHONE SCREEN - 460-760px */
+
+@media (min-width: 461px) { 
+
+  #search_quotes_container {
+    max-height: 60vh;
   }
 
+  #search_quotes_container > #money_quotes, #search_quotes_container > #fire_quotes {
+    padding-top: 185px;
+  }
+  
+  #search_quotes_container > #world_quotes, #search_quotes_container > #think_quotes {
+    padding-top: 0px;
+  }
+  
+  #search_quotes_container > #target_quotes {
+    padding-top: 20px;
+  }
 }
 
 @media (min-width: 760px) {
@@ -880,6 +922,11 @@ header > h1 {
   
   #button_container {
     max-width: 600px;
+    margin-bottom: 10px;
+  }
+
+  #search_quotes_container {
+    max-height: 45vh;
   }
 
   #search_quotes_container {
@@ -893,15 +940,20 @@ header > h1 {
   }
 
   #search_quotes_container > #money_quotes {
-    padding-top: 0px;
+    padding-top: 200px;
   }
 
   #search_quotes_container > #fire_quotes {
-    padding-top: 60px;
+    padding-top: 270px;
   }
 
- 
+  #search_quotes_container > #think_quotes {
+    padding-top: 40px;
+  }
 
+  #search_quotes_container > #target_quotes {
+    padding-top: 150px;
+  }
   
 
 }
