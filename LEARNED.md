@@ -4,6 +4,8 @@
 
 For frontend, use LiveServer as the port (e.g. http://127.0.0.1:5500). And for PHP, see under PHP section for setting up different port. 
 
+Make sure in the settings for LiveServer that you edit the json.settings so prevent any changes to your .db from causing a page reload. 
+
 ## PHP
 
 Start your PHP server from the folder your PHP files are in. e.g. Go to backend folder in terminal and then: php -S localhost:8000
@@ -13,10 +15,20 @@ header("Access-Control-Allow-Origin: http://127.0.0.1:5500"); // Adjust the orig
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
+- Debugging:
+Using curl in your terminal to run your PHP script (e.g. below) gives specific error messages
+
+curl -X POST http://localhost:8000/scripts/updateVoteCount.php \
+     -H "Content-Type: application/json" \
+     -d '{"id": 1}'
+
+
 - Debugging
     - echo
     - print_r($var)
     - var_dump($var) - shows info like data type
+
+
 
 PDO = PHP Data Objects = an interface to access databases like SQLite, MySQL etc. 
 

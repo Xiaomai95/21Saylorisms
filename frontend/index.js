@@ -4,19 +4,39 @@
 
 window.addEventListener('DOMContentLoaded', () => {
   // DOM ELEMENTS - START
-  const quotesContainer = document.getElementById('quotes_container');
+
+  const closeOverlay = document.getElementById('close_overlay_button');
+  const menu = document.getElementById('menu');
+  const overlay = document.getElementById('overlay');
   const votingTabs = document.querySelectorAll('.voting_tabs_button');
+
+  //OneVersusOne Section
   const oneVersusOne = document.getElementById('versus_button');
   const versusSection = document.getElementById('versus_section');
   const searchSection = document.getElementById('search_section');
   const search = document.getElementById('search_button');
-  const versusCards = document.querySelectorAll('.versus_section_quote_card')
   const quote1Versus = document.getElementById('versus_section_quotes_1');
   const quote2Versus = document.getElementById('versus_section_quotes_2');
 
-  const votingForm = document.querySelectorAll('.voting_form');
+  //Emoji Search section
+  const emojiButtons = document.querySelectorAll('.search_section_button');
+  const emojiQuotes = document.querySelectorAll('.emoji_search_quotes');
+  const moneyQuotes = document.getElementById('money_quotes');
+  const predictionQuotes = document.getElementById('prediction_quotes');
+  const energyQuotes = document.getElementById('energy_quotes');
+  const fireQuotes = document.getElementById('fire_quotes');
+  const worldQuotes = document.getElementById('world_quotes');
+  const upQuotes = document.getElementById('up_quotes');
+  const thinkQuotes = document.getElementById('think_quotes');
+  const targetQuotes = document.getElementById('target_quotes');
+  const hearts = document.querySelectorAll('.voteDB');
+  const votePopUp = document.getElementById('vote_popup');
+  const noVotesPopUp = document.getElementById('no_votes_popup');
+
+  //Vote counters
   const mainVoteCount = document.getElementById('vote_count');
   const overlayVoteCount = document.getElementById('overlay_vote_count_span');
+  const popupVoteCount = document.getElementById('vote_popup_span');
 
   // DOM ELEMENTS - END
 
@@ -67,20 +87,117 @@ window.addEventListener('DOMContentLoaded', () => {
     quote20,
     quote21,
   ];
-  
+
+  const voteCount1 = document.getElementById('vote_count_1');
+  const voteCount2 = document.getElementById('vote_count_2');
+  const voteCount3 = document.getElementById('vote_count_3');
+  const voteCount4 = document.getElementById('vote_count_4');
+  const voteCount5 = document.getElementById('vote_count_5');
+  const voteCount6 = document.getElementById('vote_count_6');
+  const voteCount7 = document.getElementById('vote_count_7');
+  const voteCount8 = document.getElementById('vote_count_8');
+  const voteCount9 = document.getElementById('vote_count_9');
+  const voteCount10 = document.getElementById('vote_count_10');
+  const voteCount11 = document.getElementById('vote_count_11');
+  const voteCount12 = document.getElementById('vote_count_12');
+  const voteCount13 = document.getElementById('vote_count_13');
+  const voteCount14 = document.getElementById('vote_count_14');
+  const voteCount15 = document.getElementById('vote_count_15');
+  const voteCount16 = document.getElementById('vote_count_16');
+  const voteCount17 = document.getElementById('vote_count_17');
+  const voteCount18 = document.getElementById('vote_count_18');
+  const voteCount19 = document.getElementById('vote_count_19');
+  const voteCount20 = document.getElementById('vote_count_20');
+  const voteCount21 = document.getElementById('vote_count_21');
+
+  let voteCountArray = [
+    voteCount1,
+    voteCount2,
+    voteCount3,
+    voteCount4,
+    voteCount5,
+    voteCount6,
+    voteCount7,
+    voteCount8,
+    voteCount9,
+    voteCount10,
+    voteCount11,
+    voteCount12,
+    voteCount13,
+    voteCount14,
+    voteCount15,
+    voteCount16,
+    voteCount17,
+    voteCount18,
+    voteCount19,
+    voteCount20,
+    voteCount21,
+  ];
+
   ///voting
-  let voteCount = 21; //user gets 21 votes only - start at 21 and count down
+  let voteCount = 2; //user gets 21 votes only - start at 21 and count down
   mainVoteCount.innerHTML = voteCount;
   overlayVoteCount.innerHTML = voteCount;
+  popupVoteCount.innerHTML = voteCount;
 
   /// quotes
   let quotesArray = [];
-  let displayVersusQuotes; //points to function with closure inside later but is declared globally here so that it points to createOneVersusOneQuotesDisplay(quotesArray) only once, thus the same quotesArray is used instead of duplicates. 
+  let displayVersusQuotes; //points to function with closure inside later but is declared globally here so that it points to createOneVersusOneQuotesDisplay(quotesArray) only once, thus the same quotesArray is used instead of duplicates.
 
   // GLOBAL VARIABLES (STATE) - END
 
   // HELPER FUNCTIONS - START
-  function votingTabsClickEvent() {
+
+  function toggleOverlay() {
+    //opens/closes the overlay
+    if (overlay.classList.contains('inactive')) {
+      overlay.classList.remove('inactive');
+      overlay.classList.add('active');
+      document.body.classList.add('overlay_open'); //don't allow scrolling when overlay is open
+    } else {
+      overlay.classList.remove('active');
+      overlay.classList.add('inactive');
+      document.body.classList.remove('overlay_open'); //don't allow scrolling when overlay is open
+    }
+  }
+
+  function toggleEmojiQuotes(event) {
+    let emojiEvent = event.target.id;
+    emojiQuotes.forEach((quotes) => {
+      quotes.classList.add('inactive');
+      if (emojiEvent === 'money') moneyQuotes.classList.remove('inactive');
+      else if (emojiEvent === 'prediction')
+        predictionQuotes.classList.remove('inactive');
+      else if (emojiEvent === 'energy')
+        energyQuotes.classList.remove('inactive');
+      else if (emojiEvent === 'fire') fireQuotes.classList.remove('inactive');
+      else if (emojiEvent === 'world') worldQuotes.classList.remove('inactive');
+      else if (emojiEvent === 'up') upQuotes.classList.remove('inactive');
+      else if (emojiEvent === 'think') thinkQuotes.classList.remove('inactive');
+      else if (emojiEvent === 'target')
+        targetQuotes.classList.remove('inactive');
+    });
+  }
+
+  function toggleEmojiButtons() {
+    emojiButtons.forEach((button) => {
+      //first forEach to add event listener and to activate button once clicked
+      button.addEventListener('click', toggleEmojiQuotes);
+      button.addEventListener('click', () => {
+        emojiButtons.forEach((bt) => {
+          //second forEach resets all once one button is clicked to ensure no two are active at same time
+          bt.classList.remove('active');
+          bt.classList.add('inactive');
+        });
+        if (button.classList.contains('inactive')) {
+          button.classList.remove('inactive');
+          button.classList.add('active');
+        }
+      });
+    });
+  }
+
+  function toggleVotingTabs() {
     votingTabs.forEach((votingTab) => {
       votingTab.addEventListener('click', () => {
         votingTabs.forEach((vt) => vt.classList.remove('active'));
@@ -103,77 +220,161 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function addHeartEventListeners() {
+    hearts.forEach((heart) => {
+      heart.addEventListener('click', handleHeartVotes);
+    });
+  }
+
+  function disableHeartVote(id) {
+    hearts.forEach((heart) => {
+      if (heart.dataset.id === id) {
+        heart.checked = true;
+        heart.disabled = true;
+      }
+    });
+  }
 
   function displayQuotes(sortedQuotes) {
+    console.log(sortedQuotes)
     for (let i = 0; i <= sortedQuotes.length; i++) {
       quoteElements[i].innerHTML = sortedQuotes[i].quote;
+      voteCountArray[i].innerHTML = sortedQuotes[i].vote;
     }
   }
 
-  function createOneVersusOneQuotesDisplay(quotesArray) {
-    
-    let quotesRemovedArray = [...quotesArray]; //point to quotesArray and in closure below, quotesRemovedArray remembers edited array with quotes removed
-    
-
-    return function displayOneVersusOneQuotes() { //closure to remember which quotes have been removed
-
-      //run function again when user votes
-
-      if (quotesRemovedArray.length < 2) {
-        console.log('Not enough quotes'); ////change this to a notification
-        return;
-      }
-
-      let firstRandomIndex = Math.floor(Math.random() * quotesRemovedArray.length);
-      let firstQuote = quotesRemovedArray.splice(firstRandomIndex, 1)[0].quote ////firstQuote and secondQuote variables are pointing to two different array - need to remove splice from same array //remove quote from array and get quote text
-      quote1Versus.innerHTML = firstQuote;
-      console.log("first", quotesRemovedArray)
-
-      let secondRandomIndex = Math.floor(
-        Math.random() * quotesRemovedArray.length
-      );
-      let secondQuote = quotesRemovedArray.splice(secondRandomIndex, 1)[0].quote //remove quote from array and get quote text
-      quote2Versus.innerHTML = secondQuote;
-      console.log("second", quotesRemovedArray)
-     
-    };
-  }
-
-  function votingCardsClickEvent() {
-    versusCards.forEach((card) => {
-      card.addEventListener('click', () => {
-        displayVersusQuotes()
-        let runVoteCount = changeVoteCount(); //because it's a closure
-        runVoteCount();
-        //// click needs to run function that +1 to quote that was voted for
-      }) 
-    })
+  function handleVotePopUp() {
+    if (voteCount > 0) {
+      votePopUp.classList.remove('inactive');
+      setTimeout(() => {
+        votePopUp.classList.add('inactive');
+      }, 3000);
+    } else {
+      noVotesPopUp.classList.remove('inactive');
+      setTimeout(() => {
+        noVotesPopUp.classList.add('inactive');
+      }, 3000);
+    }
+    //if still have votes, run show upvoted popup function
+    //if no more votes, run no more votes popup
   }
 
   function changeVoteCount() {
+    
+    handleVotePopUp();
+    let usedVotes = parseInt(localStorage.getItem('usedVotes', '0')) || 0;
+
 
     return function trackVoteCount() {
-      if (voteCount < 1) {
-        ////notification
-        return
+      //closure tracking the vote count
+      if (usedVotes >= 2) {
+        handleVotePopUp();
+        return;
       }
-      voteCount--
+      voteCount--;
       overlayVoteCount.innerHTML = voteCount;
       mainVoteCount.innerHTML = voteCount;
+      popupVoteCount.innerHTML = voteCount;
+
+      localStorage.setItem('usedVotes', usedVotes + 1);
+    };
+  }
+
+  async function updateDBVoteCount(event) {
+    if (voteCount === 0) return;
+
+    const id = event.target.dataset.id; // Get ID from button
+    if (!id) {
+      console.error('No ID found for vote update.');
+      return;
     }
 
+    try {
+      const response = await fetch(
+        'http://localhost:8000/scripts/updateVoteCount.php',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Error updating vote count:', error);
+    }
   }
 
   // HELPER FUNCTIONS - END
 
   // CONTROLLER FUNCTIONS - START
 
-  function sortQuotes(quotes) { //sorts quotes highest to lowest number of votes
-    let sortedQuotes = quotes.sort((b, a) => {
-      if (b.votes === a.votes) {
-        return b.quote.length - a.quote.length; //if votes are equal, the shortest quote wins (no reason for this, just had to sort them somehow)
+  function createOneVersusOneQuotesDisplay(quotesArray) {
+    let quotesRemovedArray = [...quotesArray];
+
+    return function displayOneVersusOneQuotes() {
+      if (quotesRemovedArray.length < 2) {
+        console.log('Not enough quotes');
+        return;
       }
-      return b.votes - a.votes;
+      if (localStorage.getItem("usedVotes") >= 2) return; //stop showing new quotes if no more votes left
+
+      let firstRandomIndex = Math.floor(
+        Math.random() * quotesRemovedArray.length
+      );
+      let firstQuote = quotesRemovedArray.splice(firstRandomIndex, 1)[0];
+      quote1Versus.innerHTML = firstQuote.quote;
+      quote1Versus.setAttribute('data-id', firstQuote.id);
+
+      let secondRandomIndex = Math.floor(
+        Math.random() * quotesRemovedArray.length
+      );
+      let secondQuote = quotesRemovedArray.splice(secondRandomIndex, 1)[0];
+      quote2Versus.innerHTML = secondQuote.quote;
+      quote2Versus.setAttribute('data-id', secondQuote.id);
+    };
+  }
+
+  // Ensure only one function handles votes
+  function handleOneVersusOneVote(event) {
+    const id = event.target.dataset.id; // Get ID from button
+
+    if (voteCount !== 0) localStorage.setItem(`id-${id}`, id); //only add id to local storage if user still has votes remaining
+
+    if (localStorage.getItem(`id-${id}`)) {
+      event.target.disabled = true; //both disabled+checked needed to prevent user voting again
+      // event.target.checked = true;
+    }
+
+    disableHeartVote(id); //
+
+    let runVoteCount = changeVoteCount();
+    runVoteCount();
+    displayVersusQuotes();
+    updateDBVoteCount(event);
+  }
+
+  function handleHeartVotes(event) {
+    const id = event.target.dataset.id; // Get ID from button
+
+    localStorage.setItem(`id-${id}`, id);
+
+    if (localStorage.getItem(`id-${id}`)) {
+      event.target.disabled = true; //both disabled+checked needed to prevent user voting again
+      // event.target.checked = true;
+    }
+
+    let runVoteCount = changeVoteCount();
+    runVoteCount();
+    updateDBVoteCount(event);
+  }
+
+  function sortQuotes(quotes) {
+    //sorts quotes highest to lowest number of votes
+    let sortedQuotes = quotes.sort((b, a) => {
+      return a.vote - b.vote;
     });
     displayQuotes(sortedQuotes.slice(0, 21)); //only display top 21 quotes
   }
@@ -182,19 +383,19 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:8000/scripts/fetchQuotes.php')
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
       .then((quotes) => {
         quotesArray = [...quotes];
-        if (!displayVersusQuotes) displayVersusQuotes = createOneVersusOneQuotesDisplay(quotesArray); //closure inside create func so need to call displayQuotes below
-        displayVersusQuotes();
-        votingCardsClickEvent(quotesArray);
+        console.log(quotesArray)
+        displayVersusQuotes = createOneVersusOneQuotesDisplay(quotesArray);
+        displayVersusQuotes(); // Ensure it's only called ONCE
         sortQuotes(quotesArray);
       })
       .catch((error) => {
-        console.log(`Error fetching quotes: ${error}`);
+        console.error(`Error fetching quotes: ${error}`);
       });
   }
 
@@ -202,10 +403,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // CONTAINER FUNCTION - START
   function startApp() {
-    //add initial event listeners here
     fetchQuotes();
-    votingTabsClickEvent()
-
+    //add initial event listeners here
+    toggleVotingTabs();
+    toggleEmojiButtons();
+    addHeartEventListeners();
+    closeOverlay.addEventListener('click', toggleOverlay);
+    menu.addEventListener('click', toggleOverlay);
+    quote1Versus.addEventListener('click', handleOneVersusOneVote);
+    quote2Versus.addEventListener('click', handleOneVersusOneVote);
   }
   // CONTAINER FUNCTION - END
   startApp();

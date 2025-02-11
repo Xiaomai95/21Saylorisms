@@ -1,5 +1,3 @@
--- SQLite
--- SQLite
 CREATE TABLE quotes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     quote TEXT NOT NULL, 
@@ -16,7 +14,7 @@ INSERT INTO quotes (quote) VALUES
 ("Bitcoin is the dominant digital monetary network. The next billion members will pay trillions to join. You might want to join first."),
 ("A designer knows he has achieved perfection when there is nothing left to take away."),
 ("It doesn’t matter if it is quick if it’s the wrong answer."),
-("Imagine a world where everyone used something fair & equitable to settle their economic differences."),
+("Bitcoin is worth all the money in the world."),
 ("Bitcoin is an ark of encrypted energy to escape the currency flood."),
 ("Bitcoin is the most efficient system in the history of mankind for channeling energy through time and space."),
 ("The magic of Bitcoin isn’t the transfer of money to someone 10,000 miles away – it is the transfer of money to someone 10,000 days away."),
@@ -42,4 +40,12 @@ INSERT INTO quotes (quote) VALUES
 ("1 BTC = 1 BTC."),
 ("Nothing has created more wealth in the past decade than technologies banned in China."),
 ("Volatility is a gift to the faithful."),
+("If you are not buying bitcoin at the top, you are leaving money on the table."),
+("The future of money will be determined by physics."),
+("Satoshi gave us a game we can all win."),
+("The money is great. The mission is even greater."),
+("Bitcoin is Rules Without Rulers."),
+("Bitcoin benefits from all forms of investment by all types of entities, and should welcome everyone."),
 ("The Bitcoin price is set by those with more money and less knowledge than you. In time, they will get the knowledge and you will get the money.");
+
+
