@@ -291,7 +291,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     try {
       const response = await fetch(
-        'http://localhost:8000/scripts/updateVoteCount.php',
+        'https://21saylorisms.fly.dev/scripts/updateVoteCount.php',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -380,7 +380,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function fetchQuotes() {
-    fetch('http://localhost:8000/scripts/fetchQuotes.php')
+    fetch('https://21saylorisms.fly.dev/scripts/fetchQuotes.php')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

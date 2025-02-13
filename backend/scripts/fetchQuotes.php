@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 // Enable CORS (Cross-Origin Resource Sharing)
-header("Access-Control-Allow-Origin: http://127.0.0.1:5500"); // Adjust the origin to match your Live Server URL
+header("Access-Control-Allow-Origin: http://localhost:8080"); // Adjust the origin to match your Live Server URL
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
