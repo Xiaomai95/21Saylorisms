@@ -2,7 +2,7 @@
 ob_start();
 error_log("Received request: " . file_get_contents("php://input"));
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: http://localhost:8080"); // Allow cross-origin requests
+header("Access-Control-Allow-Origin: http://127.0.0.1:3000"); // Allow cross-origin requests
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
